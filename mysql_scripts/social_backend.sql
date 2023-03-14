@@ -10,7 +10,7 @@
 
 ------------------------------------------------------------------------------------------
 
--- DROP TABLE posts;
+/* DROP TABLE posts; */
 
 ------------------------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ CREATE TABLE
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
         title VARCHAR(255) NOT NULL,
         content VARCHAR(255),
-        published BOOLEAN,
+        published BOOLEAN DEFAULT true,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
@@ -41,4 +41,21 @@ CREATE TABLE
 
 ------------------------------------------------------------------------------------------
 
-INSERT INTO posts VALUES("") 
+INSERT INTO
+    posts(title, content)
+VALUES (
+        "Some creedence",
+        "There is a bathroom on the right"
+    );
+
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+
+-- CHecking out all the values in the table
+
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+
+SELECT * FROM posts;
