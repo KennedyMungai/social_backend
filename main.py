@@ -80,7 +80,7 @@ async def retrieve_one_post(_id: int) -> dict:
         return _post
 
 
-@app.post("/createpost")
+@app.post("/createpost", status_code=status.HTTP_201_CREATED)
 async def create_post(_post: Post) -> dict:
     """The create post endpoint
 
