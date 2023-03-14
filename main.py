@@ -6,6 +6,16 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
+class Post(BaseModel):
+    """Created the Post class
+
+    Args:
+        BaseModel (Class): The parant class of Post
+    """
+    title: str
+    content: str
+
+
 @app.get("/")
 async def root() -> dict:
     """The root api endpoint
