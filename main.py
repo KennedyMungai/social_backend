@@ -10,7 +10,7 @@ class Post(BaseModel):
     """Created the Post class
 
     Args:
-        BaseModel (Class): The parant class of Post
+        BaseModel (Class): The parent class of Post
     """
     title: str
     content: str
