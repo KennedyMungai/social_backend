@@ -27,11 +27,11 @@ async def root() -> dict:
 
 
 @app.post("/createpost")
-async def create_post(payload: Post) -> dict:
+async def create_post(_new_post: Post) -> dict:
     """A dummy endpoint to create a post
 
     Returns:
         dict: The message to show successful logic execution
     """
-    print(payload)
-    return {"new_post": f"title {payload['I came']}:content {payload['I praised the lord']}"}
+    print(_new_post)
+    return {"new_post": f"title {_new_post['I came']}:content {_new_post['I praised the lord']}"}
