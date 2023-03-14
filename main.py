@@ -137,14 +137,13 @@ async def update_post(_id: int, _new_post: Post) -> dict:
     Returns:
         dict: A message is shown when the logic is successfully run
     """
-    _post = find_post(_id)
+    _post: dict = find_post(_id)
+    _post_index: int = my_posts.index(_post)
 
     if not _post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Post with an id of {_id} does not exist")
 
-    _post.title = _new_post.title
-    _post.content = _new_post.content
-    _post.rating = _new_post.rating
+    my_posts[_post_index] = _new_post
 
     return {"message": "The post has been successfully updated"}
