@@ -6,6 +6,8 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+my_posts = []
+
 
 class Post(BaseModel):
     """Created the Post class
