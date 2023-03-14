@@ -97,7 +97,7 @@ async def create_post(_post: Post) -> dict:
     return {"data": _post_dict}
 
 
-@app.delete("/posts/{_id}", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete("/posts/{_id}")
 async def delete_one_post(_id: int) -> dict:
     """An endpoint for deleting posts
 
