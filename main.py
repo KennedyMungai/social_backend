@@ -48,11 +48,14 @@ async def retrieve_all_posts() -> dict:
 
 @app.post("/createpost")
 async def create_post(_post: Post) -> dict:
-    """A dummy endpoint to create a post
+    """The create post endpoint
+
+    Args:
+        _post (Post): The post
 
     Returns:
-        dict: The message to show successful logic execution
+        dict: A returned dictionary to show successful execution of the logic
     """
-    # print(_new_post.rating)
-    _post_dict = _post.dict()
-    return {"data": _post_dict}
+    my_posts.append(_post.dict())
+
+    return {"data": _post}
