@@ -35,5 +35,5 @@ async def create_post(_new_post: Post) -> dict:
     Returns:
         dict: The message to show successful logic execution
     """
-    print(_new_post.title)
+    print(_new_post.published)
     return {"data": "new post"}
