@@ -47,6 +47,21 @@ async def retrieve_all_posts() -> dict:
     return {"data": my_posts}
 
 
+@app.get("/posts/{_id}")
+async def retrieve_one_post(_id: int) -> dict:
+    """An endpoint to retrieve a specified post
+
+    Args:
+        _id (int): The id of the post
+
+    Returns:
+        dict: Outputs the post data
+    """
+    for post in my_posts:
+        if post["id"] == _id:
+            return {"post": post}
+
+
 @app.post("/createpost")
 async def create_post(_post: Post) -> dict:
     """The create post endpoint
