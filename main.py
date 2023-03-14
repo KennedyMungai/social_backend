@@ -1,7 +1,7 @@
 """The entrypoint for the backend"""
 
 from typing import Optional
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 from random import randrange
 
@@ -25,6 +25,20 @@ class Post(BaseModel):
     content: str
     published: Optional[bool] = True
     rating: Optional[int] = None
+
+
+def find_post(_id: int):
+    """A function to find a post inside the my_posts array
+
+    Args:
+        _id (int): The id of the post
+
+    Returns:
+        Post: The found post
+    """
+    for post in my_posts:
+        if post["id"] == _id:
+            return post
 
 
 @app.get("/")
@@ -57,9 +71,13 @@ async def retrieve_one_post(_id: int) -> dict:
     Returns:
         dict: Outputs the post data
     """
-    for post in my_posts:
-        if post["id"] == _id:
-            return {"post": post}
+    _post = find_post(_id)
+
+    if not _post:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"The post with id: {_id} was not found")
+    else:
+        return _post
 
 
 @app.post("/createpost")
