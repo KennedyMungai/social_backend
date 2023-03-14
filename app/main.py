@@ -2,6 +2,7 @@
 
 import os
 from random import randrange
+from time import sleep
 from typing import Optional
 
 from dotenv import find_dotenv, load_dotenv
@@ -35,6 +36,7 @@ while True:
 
     except Exception as error:
         print(f"Connecting to the database failed. Has error: {error}")
+        sleep(2)
 
 
 class Post(BaseModel):
