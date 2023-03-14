@@ -1,1 +1,7 @@
 -- Active: 1678782310580@@127.0.0.1@3306@social_backend
+CREATE TABLE IF NOT EXISTS posts (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    content VARCHAR(255),
+    published BOOLEAN
+);
