@@ -5,6 +5,6 @@
     }
   ],
   "settings": {
-    "cSpell.words": ["createpost"]
+    "cSpell.words": ["createpost", "dotenv", "pymysql"]
   }
 }
