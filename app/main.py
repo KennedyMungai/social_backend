@@ -5,6 +5,11 @@ from typing import Optional
 
 from fastapi import FastAPI, HTTPException, Response, status
 from pydantic import BaseModel
+from pymysql import connect
+from dotenv import find_dotenv, load_dotenv
+import os
+
+env = load_dotenv(find_dotenv())
 
 app = FastAPI()
 
@@ -14,6 +19,20 @@ my_posts = [
     {"title": "Title of the second post",
         "content": "Content of the second post", "id": 2}
 ]
+
+try:
+    conn = connect(
+        host=os.environ.get("MYSQL_HOST"),
+        user=os.environ.get("MYSQL_USER"),
+        password=os.environ.get("MYSQL_PASSWORD"),
+        db=os.environ.get("MYSQL_DATABASE")
+    )
+
+    cur = conn.cursor()
+    print("Database connection successful")
+
+except Exception as error:
+    print("Connecting to the database failed")
 
 
 class Post(BaseModel):
