@@ -6,7 +6,12 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-my_posts = []
+my_posts = [
+    {"title": "Title of the first post",
+        "content": "Content of the first post", "id": 1},
+    {"title": "Title of the second post",
+        "content": "Content of the second post", "id": 2}
+]
 
 
 class Post(BaseModel):
