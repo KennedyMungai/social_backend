@@ -32,7 +32,7 @@ try:
     print("Database connection successful")
 
 except Exception as error:
-    print("Connecting to the database failed")
+    print(f"Connecting to the database failed. Has error: {error}")
 
 
 class Post(BaseModel):
