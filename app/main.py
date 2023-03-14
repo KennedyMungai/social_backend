@@ -1,13 +1,13 @@
 """The entrypoint for the backend"""
 
+import os
 from random import randrange
 from typing import Optional
 
+from dotenv import find_dotenv, load_dotenv
 from fastapi import FastAPI, HTTPException, Response, status
 from pydantic import BaseModel
 from pymysql import connect
-from dotenv import find_dotenv, load_dotenv
-import os
 
 env = load_dotenv(find_dotenv())
 
