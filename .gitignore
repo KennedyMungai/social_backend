@@ -1,0 +1,4 @@
+social_backend/
+requirements.txt
+__pycache__/
+.env
