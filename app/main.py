@@ -20,19 +20,21 @@ my_posts = [
         "content": "Content of the second post", "id": 2}
 ]
 
-try:
-    conn = connect(
-        host=os.environ.get("MYSQL_HOST"),
-        user=os.environ.get("MYSQL_USER"),
-        password=os.environ.get("MYSQL_PASSWORD"),
-        db=os.environ.get("MYSQL_DATABASE")
-    )
+while True:
+    try:
+        conn = connect(
+            host=os.environ.get("MYSQL_HOST"),
+            user=os.environ.get("MYSQL_USER"),
+            password=os.environ.get("MYSQL_PASSWORD"),
+            db=os.environ.get("MYSQL_DATABASE")
+        )
 
-    cur = conn.cursor()
-    print("Database connection successful")
+        cur = conn.cursor()
+        print("Database connection successful")
+        break
 
-except Exception as error:
-    print(f"Connecting to the database failed. Has error: {error}")
+    except Exception as error:
+        print(f"Connecting to the database failed. Has error: {error}")
 
 
 class Post(BaseModel):
