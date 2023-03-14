@@ -22,4 +22,5 @@ async def create_post(payload: dict = Body(...)) -> dict:
     Returns:
         dict: The message to show successful logic execution
     """
+    print(payload)
     return {"Message": "Post created"}
