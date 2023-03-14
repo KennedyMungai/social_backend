@@ -38,7 +38,7 @@ while True:
         sleep(2)
 
 
-cur = conn.cursor()
+cursor = conn.cursor()
 
 
 class Post(BaseModel):
@@ -84,8 +84,8 @@ async def retrieve_all_posts() -> dict:
     Returns:
         dict: A dictionary containing the my_posts array
     """
-    posts = cur.execute("""SELECT * FROM posts""")
-
+    cursor.execute("""SELECT * FROM posts""")
+    posts = cursor.fetchall()
     return {"posts": posts}
 
 
