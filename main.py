@@ -57,8 +57,8 @@ async def create_post(_post: Post) -> dict:
     Returns:
         dict: A returned dictionary to show successful execution of the logic
     """
-    post_dict = _post.dict()
-    post_dict["id"] = randrange(0, 1000000)
-    my_posts.append(post_dict)
+    _post_dict = _post.dict()
+    _post_dict["id"] = randrange(0, 1000000)
+    my_posts.append(_post_dict)
 
-    return {"data": _post}
+    return {"data": _post_dict}
