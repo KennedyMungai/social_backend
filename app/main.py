@@ -30,13 +30,15 @@ while True:
             db=os.environ.get("MYSQL_DATABASE")
         )
 
-        cur = conn.cursor()
         print("Database connection successful")
         break
 
     except Exception as error:
         print(f"Connecting to the database failed. Has error: {error}")
         sleep(2)
+
+
+cur = conn.cursor()
 
 
 class Post(BaseModel):
@@ -82,7 +84,9 @@ async def retrieve_all_posts() -> dict:
     Returns:
         dict: A dictionary containing the my_posts array
     """
-    return {"data": my_posts}
+    posts = cur.execute("""SELECT * FROM posts""")
+
+    return {"posts": posts}
 
 
 @app.get("/posts/{_id}")
