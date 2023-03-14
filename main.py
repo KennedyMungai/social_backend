@@ -1,6 +1,6 @@
 """The entrypoint for the backend"""
 
-from fastapi import Body, FastAPI
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
