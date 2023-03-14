@@ -121,3 +121,30 @@ async def delete_one_post(_id: int):
     my_posts.pop(_post_index)
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+@app.put("/posts/{_id}")
+async def update_post(_id: int, _new_post: Post) -> dict:
+    """Created the update endpoint
+
+    Args:
+        _id (int): The id of the post
+        _new_post (Post): The data to update the post
+
+    Raises:
+        HTTPException: A not found exception is raised when the post is not found
+
+    Returns:
+        dict: A message is shown when the logic is successfully run
+    """
+    _post = find_post(_id)
+
+    if not _post:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Post with an id of {_id} does not exist")
+
+    _post.title = _new_post.title
+    _post.content = _new_post.content
+    _post.rating = _new_post.rating
+
+    return {"message": "The post has been successfully updated"}
