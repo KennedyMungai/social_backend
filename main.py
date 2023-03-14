@@ -1,6 +1,7 @@
 """The entrypoint for the backend"""
 
 from fastapi import Body, FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -23,4 +24,4 @@ async def create_post(payload: dict = Body(...)) -> dict:
         dict: The message to show successful logic execution
     """
     print(payload)
-    return {"Message": "Post created"}
+    return {"new_post": f"title {payload['I came']}:content {payload['I praised the lord']}"}
