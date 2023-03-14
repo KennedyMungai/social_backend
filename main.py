@@ -36,6 +36,16 @@ async def root() -> dict:
     return {"Message": "Hello World"}
 
 
+@app.get("/posts")
+async def retrieve_all_posts() -> dict:
+    """An api endpoint to retrieve all posts
+
+    Returns:
+        dict: A dictionary containing the my_posts array
+    """
+    return {"data": my_posts}
+
+
 @app.post("/createpost")
 async def create_post(_post: Post) -> dict:
     """A dummy endpoint to create a post
