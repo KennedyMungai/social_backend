@@ -15,7 +15,7 @@ class Post(BaseModel):
     """
     title: str
     content: str
-    published: Optional[bool]
+    published: Optional[bool] = True
 
 
 @app.get("/")
