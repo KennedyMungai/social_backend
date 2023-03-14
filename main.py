@@ -13,3 +13,13 @@ async def root() -> dict:
         dict: A message to show successful execution
     """
     return {"Message": "Hello World"}
+
+
+@app.post("/createpost")
+async def create_post() -> dict:
+    """A dummy endpoint to create a post
+
+    Returns:
+        dict: The message to show successful logic execution
+    """
+    return {"Message": "Post created"}
