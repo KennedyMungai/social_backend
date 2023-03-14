@@ -95,3 +95,28 @@ async def create_post(_post: Post) -> dict:
     my_posts.append(_post_dict)
 
     return {"data": _post_dict}
+
+
+@app.delete("/posts/{_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_one_post(_id: int) -> dict:
+    """An endpoint for deleting posts
+
+    Args:
+        _id (int): The id of the post
+
+    Raises:
+        HTTPException: A not found exception is raised if the post is not found in my_posts
+
+    Returns:
+        dict: A message to show the successful execution of the code
+    """
+    _post = find_post(_id)
+
+    if not _post:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Post of id: {_id} does not exist")
+
+    _post_index = my_posts.index(_post)
+    my_posts.pop(_post_index)
+
+    return {"message": "The post has been successfully deleted"}
