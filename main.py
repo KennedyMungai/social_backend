@@ -3,7 +3,7 @@
 from random import randrange
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, Response, status
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -119,3 +119,5 @@ async def delete_one_post(_id: int):
 
     _post_index = my_posts.index(_post)
     my_posts.pop(_post_index)
+
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
