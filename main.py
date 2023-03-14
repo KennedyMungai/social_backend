@@ -12,6 +12,4 @@ async def root() -> dict:
     Returns:
         dict: A message to show successful execution
     """
-    return {
-        "Message": "Hello World"
-    }
+    return {"Message": "Hello World"}
