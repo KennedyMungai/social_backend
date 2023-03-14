@@ -119,5 +119,3 @@ async def delete_one_post(_id: int):
 
     _post_index = my_posts.index(_post)
     my_posts.pop(_post_index)
-
-    return {"message": "The post has been successfully deleted"}
