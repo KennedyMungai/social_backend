@@ -1,6 +1,6 @@
 """The entrypoint for the backend"""
 
-from fastapi import FastAPI
+from fastapi import Body, FastAPI
 
 app = FastAPI()
 
@@ -16,7 +16,7 @@ async def root() -> dict:
 
 
 @app.post("/createpost")
-async def create_post(payload: dict) -> dict:
+async def create_post(payload: dict = Body(...)) -> dict:
     """A dummy endpoint to create a post
 
     Returns:
