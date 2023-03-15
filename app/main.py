@@ -2,15 +2,17 @@
 
 import os
 from time import sleep
+from typing import Optional
 
 from dotenv import find_dotenv, load_dotenv
 from fastapi import Depends, FastAPI, HTTPException, Response, status
+from pydantic import BaseModel
 from pymysql import connect
 from sqlalchemy.orm import Session
 
 from . import models
 from .database import engine, get_db
-from .models import Post
+from .models import Post as _Post
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -41,6 +43,18 @@ while True:
 cursor = conn.cursor()
 
 
+class Post(BaseModel):
+    """Created the Post class
+
+    Args:
+        BaseModel (Class): The parent class of Post
+    """
+    title: str
+    content: str
+    published: Optional[bool] = True
+    rating: Optional[int] = None
+
+
 @app.get("/")
 async def root(_db: Session = Depends(get_db)) -> dict:
     """The root api endpoint
@@ -48,7 +62,7 @@ async def root(_db: Session = Depends(get_db)) -> dict:
     Returns:
         dict: A message to show successful execution
     """
-    _posts = _db.query(Post).all()
+    _posts = _db.query(_Post).all()
 
     print(_posts)
 
