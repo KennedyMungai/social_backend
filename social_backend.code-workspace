@@ -10,7 +10,8 @@
       "createpost",
       "dotenv",
       "pymysql",
-      "sessionmaker"
+      "sessionmaker",
+      "sqltypes"
     ]
   }
 }
