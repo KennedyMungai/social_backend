@@ -165,12 +165,8 @@ async def update_post(_id: int, _new_post: Post, _db: Session = Depends(get_db))
             detail=f"The post of id: {_id} was not found"
         )
 
-    _post_query.update(
-        {
-            "title": "This is my updated title",
-            "content": "This is my updated content",
-        }, synchronize_session=False
-    )
+    _post_query.update(_post.dict(), synchronize_session=False
+                       )
 
     _db.commit()
 
