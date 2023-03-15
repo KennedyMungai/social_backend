@@ -10,7 +10,7 @@ from pydantic import BaseModel
 from pymysql import connect
 
 from . import models
-from .database import engine
+from .database import engine, SessionLocal
 
 models.Base.metadata.create_all(bind=engine)
 
