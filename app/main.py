@@ -171,14 +171,6 @@ async def update_post(_id: int, _new_post: Post) -> dict:
     Returns:
         dict: A message is shown when the logic is successfully run
     """
-    # _post: dict = find_post(_id)
-    # _post_index: int = my_posts.index(_post)
-
-    # if not _post:
-    #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-    #                         detail=f"Post with an id of {_id} does not exist")
-
-    # my_posts[_post_index] = _new_post
     cursor.execute(
         """UPDATE posts SET title= %s, content = %s, published=%s WHERE id = %s""", (
             _new_post.title, _new_post.content, _new_post.published, _id)
@@ -187,9 +179,5 @@ async def update_post(_id: int, _new_post: Post) -> dict:
     _updated_post = cursor.fetchone()
 
     conn.commit()
-
-    # if not _updated_post:
-    #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-    #                         detail=f"The post with the id of {_id} was not found.")
 
     return {"post": _updated_post}
