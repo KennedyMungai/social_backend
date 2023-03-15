@@ -5,9 +5,10 @@ from time import sleep
 from typing import Optional
 
 from dotenv import find_dotenv, load_dotenv
-from fastapi import FastAPI, HTTPException, Response, status
+from fastapi import FastAPI, HTTPException, Response, status, Depends
 from pydantic import BaseModel
 from pymysql import connect
+from sqlalchemy.orm import Session
 
 from . import models
 from .database import engine, SessionLocal
@@ -78,7 +79,7 @@ async def root() -> dict:
 
 
 @app.get("/posts")
-async def retrieve_all_posts() -> dict:
+async def retrieve_all_posts(_db: Session = Depends(get_db)) -> dict:
     """An api endpoint to retrieve all posts
 
     Returns:
