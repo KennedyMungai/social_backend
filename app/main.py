@@ -127,15 +127,6 @@ async def delete_one_post(_id: int, _db: Session = Depends(get_db)):
     Returns:
         dict: A message to show the successful execution of the code
     """
-    _post = cursor.execute("""SELECT * FROM posts WHERE id = %s""", (_id))
-
-    if not _post:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"The post with the id of {_id} was not found")
-
-    cursor.execute("""DELETE FROM posts WHERE id = %s""", (_id))
-
-    conn.commit()
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
