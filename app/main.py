@@ -88,7 +88,7 @@ async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)):
     Returns:
         dict: Outputs the post data
     """
-    _post = _db.query(Post).filter(_Post.id == _id).all()
+    _post = _db.query(Post).filter(_Post.id == _id).first()
     _db.commit()
     _db.refresh(_post)
 
