@@ -67,20 +67,6 @@ class Post(BaseModel):
     rating: Optional[int] = None
 
 
-def find_post(_id: int):
-    """A function to find a post inside the my_posts array
-
-    Args:
-        _id (int): The id of the post
-
-    Returns:
-        Post: The found post
-    """
-    for post in my_posts:
-        if post["id"] == _id:
-            return post
-
-
 @app.get("/")
 async def root() -> dict:
     """The root api endpoint
