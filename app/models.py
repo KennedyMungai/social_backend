@@ -1,6 +1,7 @@
 """The script that contains all our model definitions"""
+from sqlalchemy import Boolean, Column, Integer, String
+
 from .database import Base
-from sqlalchemy import Column, Integer, String, Boolean
 
 
 class Post(Base):
