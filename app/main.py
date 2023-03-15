@@ -109,16 +109,10 @@ async def create_post(_new_post: Post, _db: Session = Depends(get_db)) -> dict:
     Returns:
         dict: A returned dictionary to show successful execution of the logic
     """
-    cursor.execute(
-        """INSERT INTO posts(title, content, published) VALUES (%s, %s, %s)""", (
-            _new_post.title, _new_post.content, _new_post.published)
-    )
+    _post = Post(title=_new_post.title, content=_new_post.content,
+                 published=_new_post.published)
 
-    _new_post = cursor.fetchone()
-
-    conn.commit()
-
-    return {"data": _new_post}
+    return {"data": _post}
 
 
 @app.delete("/posts/{_id}", status_code=status.HTTP_204_NO_CONTENT)
