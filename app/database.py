@@ -16,3 +16,9 @@ MYSQL_DATABASE = os.environ.get("MYSQL_DATABASE")
 SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{MYSQL_USERNAME}:{MYSQL_PASSWORD}@localhost:3306/{MYSQL_DATABASE}"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
