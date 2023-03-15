@@ -156,12 +156,13 @@ async def delete_one_post(_id: int):
 
     # _post_index = my_posts.index(_post)
     # my_posts.pop(_post_index)
-    cursor.execute("""DELETE FROM posts WHERE id = %s RETURNING *""", (_id))
-    _deleted_post = cursor.fetchone()
+    _post = cursor.execute("""SELECT * FROM posts WHERE id = %s""", (_id))
 
-    if not _deleted_post:
+    if not _post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"The post with the id of {_id} was not found")
+
+    cursor.execute("""DELETE FROM posts WHERE id = %s""", (_id))
 
     conn.commit()
 
