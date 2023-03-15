@@ -23,4 +23,19 @@ SessionLocal = sessionmaker(
     bind=engine
 )
 
+
+def get_db():
+    """The database dependency
+
+    Yields:
+        Session: The database session
+    """
+    _db = SessionLocal()
+
+    try:
+        yield _db
+    finally:
+        _db.close()
+
+
 Base = declarative_base()
