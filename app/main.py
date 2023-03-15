@@ -135,6 +135,9 @@ async def delete_one_post(_id: int, _db: Session = Depends(get_db)):
             detail=f"The post with id: {_id} could be found"
         )
 
+    _post.delete(synchronize_session=False)
+    _db.commit()
+
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
