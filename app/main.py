@@ -5,7 +5,7 @@ from time import sleep
 from typing import Optional
 
 from dotenv import find_dotenv, load_dotenv
-from fastapi import FastAPI, HTTPException, Response, status, Depends
+from fastapi import Depends, FastAPI, HTTPException, Response, status
 from pydantic import BaseModel
 from pymysql import connect
 from sqlalchemy.orm import Session
