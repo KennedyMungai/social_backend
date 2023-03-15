@@ -186,6 +186,8 @@ async def update_post(_id: int, _new_post: Post) -> dict:
 
     _updated_post = cursor.fetchone()
 
+    conn.commit()
+
     # if not _updated_post:
     #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
     #                         detail=f"The post with the id of {_id} was not found.")
