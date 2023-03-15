@@ -1,5 +1,5 @@
 """The script that contains all our model definitions"""
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Integer, String, text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 
 from .database import Base
