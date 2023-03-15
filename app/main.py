@@ -76,9 +76,8 @@ async def retrieve_all_posts(_db: Session = Depends(get_db)) -> dict:
     Returns:
         dict: A dictionary containing the my_posts array
     """
-    cursor.execute("""SELECT * FROM posts""")
-    posts = cursor.fetchall()
-    return {"posts": posts}
+    _posts = _db.query(_Post).all()
+    return {"posts": _posts}
 
 
 @app.get("/posts/{_id}")
