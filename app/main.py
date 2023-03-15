@@ -155,13 +155,5 @@ async def update_post(_id: int, _new_post: Post, _db: Session = Depends(get_db))
     Returns:
         dict: A message is shown when the logic is successfully run
     """
-    cursor.execute(
-        """UPDATE posts SET title= %s, content = %s, published=%s WHERE id = %s""", (
-            _new_post.title, _new_post.content, _new_post.published, _id)
-    )
-
-    _updated_post = cursor.fetchone()
-
-    conn.commit()
 
     return {"post": _updated_post}
