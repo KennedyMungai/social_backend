@@ -1,5 +1,6 @@
 """The script that contains all our model definitions"""
 from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy.sql.sqltypes import TIMESTAMP
 
 from .database import Base
 
@@ -15,4 +16,4 @@ class Post(Base):
     title = Column(String, nullable=False)
     content = Column(String, nullable=False)
     published = Column(Boolean, server_default='True')
-    rating = Column(Integer)
+    created_at = Column(TIMESTAMP)
