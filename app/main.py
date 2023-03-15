@@ -55,13 +55,15 @@ class Post(BaseModel):
 
 
 @app.get("/")
-async def root() -> dict:
+async def root(_db: Session = Depends(get_db)) -> dict:
     """The root api endpoint
 
     Returns:
         dict: A message to show successful execution
     """
-    return {"Message": "Hello World"}
+    _posts = _db.query(models.Post).all()
+
+    return {"data": _posts}
 
 
 @app.get("/posts")
