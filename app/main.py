@@ -149,14 +149,16 @@ async def delete_one_post(_id: int):
     Returns:
         dict: A message to show the successful execution of the code
     """
-    _post = find_post(_id)
+    # _post = find_post(_id)
 
-    if not _post:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"Post of id: {_id} does not exist")
+    # if not _post:
+    #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+    #                         detail=f"Post of id: {_id} does not exist")
 
-    _post_index = my_posts.index(_post)
-    my_posts.pop(_post_index)
+    # _post_index = my_posts.index(_post)
+    # my_posts.pop(_post_index)
+    cursor.execute("""DELETE FROM posts WHERE id = %s""", (_id))
+    conn.commit()
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
