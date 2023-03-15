@@ -99,7 +99,9 @@ async def retrieve_one_post(_id: int) -> dict:
     Returns:
         dict: Outputs the post data
     """
-    _post = find_post(_id)
+    cursor.execute("""SELECT * FROM posts WHERE id = (%s)""", (_id))
+
+    _post = cursor.fetchone()
 
     if not _post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
