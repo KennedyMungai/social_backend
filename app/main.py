@@ -111,7 +111,7 @@ async def retrieve_one_post(_id: int) -> dict:
 
 
 @app.post("/createpost", status_code=status.HTTP_201_CREATED)
-async def create_post(_post: Post) -> dict:
+async def create_post(_new_post: Post) -> dict:
     """The create post endpoint
 
     Args:
@@ -120,11 +120,18 @@ async def create_post(_post: Post) -> dict:
     Returns:
         dict: A returned dictionary to show successful execution of the logic
     """
-    _post_dict = _post.dict()
-    _post_dict["id"] = randrange(0, 1000000)
-    my_posts.append(_post_dict)
+    # _post_dict = _post.dict()
+    # _post_dict["id"] = randrange(0, 1000000)
+    # my_posts.append(_post_dict)
 
-    return {"data": _post_dict}
+    cursor.execute(
+        """INSERT INTO posts(title, content, published) VALUES (%s, %s, %s)""", (
+            _new_post.title, _new_post.content, _new_post.published)
+    )
+
+    _new_post = cursor.fetchone()
+
+    return {"data": _new_post}
 
 
 @app.delete("/posts/{_id}", status_code=status.HTTP_204_NO_CONTENT)
