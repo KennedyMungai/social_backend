@@ -155,5 +155,14 @@ async def update_post(_id: int, _new_post: Post, _db: Session = Depends(get_db))
     Returns:
         dict: A message is shown when the logic is successfully run
     """
+    _post_query = _db.query(_Post).filter(_Post.id == id)
+
+    _post = _post_query.first()
+
+    if not _post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"The post of id: {_id} was not found"
+        )
 
     return {"post": _updated_post}
