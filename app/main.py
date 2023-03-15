@@ -43,18 +43,6 @@ while True:
 cursor = conn.cursor()
 
 
-class Post(BaseModel):
-    """Created the Post class
-
-    Args:
-        BaseModel (Class): The parent class of Post
-    """
-    title: str
-    content: str
-    published: Optional[bool] = True
-    rating: Optional[int] = None
-
-
 @app.get("/")
 async def root(_db: Session = Depends(get_db)) -> dict:
     """The root api endpoint
