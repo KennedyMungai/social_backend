@@ -1,7 +1,6 @@
 """The entrypoint for the backend"""
 
 import os
-from random import randrange
 from time import sleep
 from typing import Optional
 
