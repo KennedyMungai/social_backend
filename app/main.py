@@ -88,15 +88,11 @@ async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)):
     Returns:
         dict: Outputs the post data
     """
-    cursor.execute("""SELECT * FROM posts WHERE id = %s""", (_id))
+    _post = _db.query(Post).filter(_Post.id == _id)
+    _db.commit()
+    _db.refresh(_post)
 
-    _post = cursor.fetchone()
-
-    if not _post:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"The post with id: {_id} was not found")
-
-    return _post
+    return {"data": _post}
 
 
 @app.post("/createpost", status_code=status.HTTP_201_CREATED)
