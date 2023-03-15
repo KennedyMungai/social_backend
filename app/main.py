@@ -131,6 +131,8 @@ async def create_post(_new_post: Post) -> dict:
 
     _new_post = cursor.fetchone()
 
+    conn.commit()
+
     return {"data": _new_post}
 
 
