@@ -112,6 +112,9 @@ async def create_post(_new_post: Post, _db: Session = Depends(get_db)) -> dict:
     _post = Post(title=_new_post.title, content=_new_post.content,
                  published=_new_post.published)
 
+    _db.add(_post)
+    _db.commit()
+
     return {"data": _post}
 
 
