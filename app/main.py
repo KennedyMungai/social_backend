@@ -64,8 +64,6 @@ async def root(_db: Session = Depends(get_db)) -> dict:
     """
     _posts = _db.query(_Post).all()
 
-    print(_posts)
-
     return {"data": _posts}
 
 
