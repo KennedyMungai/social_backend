@@ -90,7 +90,7 @@ async def retrieve_all_posts() -> dict:
 
 
 @app.get("/posts/{_id}")
-async def retrieve_one_post(_id: int) -> dict:
+async def retrieve_one_post(_id: int):
     """An endpoint to retrieve a specified post
 
     Args:
@@ -99,15 +99,15 @@ async def retrieve_one_post(_id: int) -> dict:
     Returns:
         dict: Outputs the post data
     """
-    cursor.execute("""SELECT * FROM posts WHERE id = (%s)""", (_id))
+    cursor.execute("""SELECT * FROM posts WHERE id = %s""", (_id))
 
     _post = cursor.fetchone()
 
     if not _post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"The post with id: {_id} was not found")
-    else:
-        return _post
+
+    return _post
 
 
 @app.post("/createpost", status_code=status.HTTP_201_CREATED)
