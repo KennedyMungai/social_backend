@@ -109,8 +109,7 @@ async def create_post(_new_post: Post, _db: Session = Depends(get_db)) -> dict:
     Returns:
         dict: A returned dictionary to show successful execution of the logic
     """
-    _post = Post(title=_new_post.title, content=_new_post.content,
-                 published=_new_post.published)
+    _post = Post(**_new_post.dict())
 
     _db.add(_post)
     _db.commit()
