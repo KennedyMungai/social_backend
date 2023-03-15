@@ -170,4 +170,4 @@ async def update_post(_id: int, _new_post: Post, _db: Session = Depends(get_db))
 
     _db.commit()
 
-    return {"post": _updated_post}
+    return {"post": _post_query.first()}
