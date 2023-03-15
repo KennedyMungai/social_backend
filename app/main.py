@@ -114,6 +114,7 @@ async def create_post(_new_post: Post, _db: Session = Depends(get_db)) -> dict:
 
     _db.add(_post)
     _db.commit()
+    _db.refresh(_post)
 
     return {"data": _post}
 
