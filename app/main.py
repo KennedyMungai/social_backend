@@ -18,6 +18,23 @@ ENV = load_dotenv(find_dotenv())
 
 app = FastAPI()
 
+# Dependency
+
+
+def get_db():
+    """The database dependency
+
+    Yields:
+        Session: The database session
+    """
+    db = SessionLocal()
+
+    try:
+        yield db
+    finally:
+        db.close()
+
+
 while True:
     try:
         conn = connect(
