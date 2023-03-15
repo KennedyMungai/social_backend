@@ -91,7 +91,7 @@ async def retrieve_all_posts(_db: Session = Depends(get_db)) -> dict:
 
 
 @app.get("/posts/{_id}")
-async def retrieve_one_post(_id: int):
+async def retrieve_one_post(_id: int, _db: Session = Depends(get_db)):
     """An endpoint to retrieve a specified post
 
     Args:
@@ -112,7 +112,7 @@ async def retrieve_one_post(_id: int):
 
 
 @app.post("/createpost", status_code=status.HTTP_201_CREATED)
-async def create_post(_new_post: Post) -> dict:
+async def create_post(_new_post: Post, _db: Session = Depends(get_db)) -> dict:
     """The create post endpoint
 
     Args:
@@ -134,7 +134,7 @@ async def create_post(_new_post: Post) -> dict:
 
 
 @app.delete("/posts/{_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_one_post(_id: int):
+async def delete_one_post(_id: int, _db: Session = Depends(get_db)):
     """An endpoint for deleting posts
 
     Args:
@@ -160,7 +160,7 @@ async def delete_one_post(_id: int):
 
 
 @app.put("/posts/{_id}")
-async def update_post(_id: int, _new_post: Post) -> dict:
+async def update_post(_id: int, _new_post: Post, _db: Session = Depends(get_db)) -> dict:
     """Created the update endpoint
 
     Args:
