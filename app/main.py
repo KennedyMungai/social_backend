@@ -105,7 +105,7 @@ async def create_post(_new_post: Post, _db: Session = Depends(get_db)) -> dict:
     Returns:
         dict: A returned dictionary to show successful execution of the logic
     """
-    _post = Post(**_new_post.dict())
+    _post = _Post(**_new_post.dict())
 
     _db.add(_post)
     _db.commit()
@@ -127,6 +127,13 @@ async def delete_one_post(_id: int, _db: Session = Depends(get_db)):
     Returns:
         dict: A message to show the successful execution of the code
     """
+    _post = _db.query(_Post).filter(_Post.id == _id)
+
+    if not _post.first():
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"The post with id: {_id} could be found"
+        )
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
