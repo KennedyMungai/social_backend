@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session
 
 from . import models
 from .database import engine, get_db
+from .models import Post
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -61,7 +62,9 @@ async def root(_db: Session = Depends(get_db)) -> dict:
     Returns:
         dict: A message to show successful execution
     """
-    _posts = _db.query(models.Post).all()
+    _posts = _db.query(Post).all()
+
+    print(_posts)
 
     return {"data": _posts}
 
