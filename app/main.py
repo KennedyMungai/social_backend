@@ -9,6 +9,11 @@ from fastapi import FastAPI, HTTPException, Response, status
 from pydantic import BaseModel
 from pymysql import connect
 
+from . import models
+from .database import engine
+
+models.Base.metadata.create_all(bind=engine)
+
 ENV = load_dotenv(find_dotenv())
 
 app = FastAPI()
