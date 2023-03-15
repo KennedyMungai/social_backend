@@ -27,12 +27,12 @@ def get_db():
     Yields:
         Session: The database session
     """
-    db = SessionLocal()
+    _db = SessionLocal()
 
     try:
-        yield db
+        yield _db
     finally:
-        db.close()
+        _db.close()
 
 
 while True:
